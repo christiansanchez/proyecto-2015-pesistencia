@@ -35,94 +35,59 @@ public class CrearDB{
 			System.out.println("********** CREANDO TABLAS **********");
 				
 			
-			
-			//el jugador es el que tiene un rol
-			//posible opción enum
-			String createTableJugador = "CREATE TABLE jugador (" +
-					"tipo INT NOT NULL PRIMARY KEY, " +
-					"UNIQUE KEY (tipo)" +
-					 ") ENGINE=InnoDB DEFAULT CHARSET=utf8;";	
-			pstmt = con.prepareStatement(createTableJugador);	
-			cant = pstmt.executeUpdate();
-			pstmt.close();
-			System.out.println("********** TABLA Jugador ok **********");
-			
-			
-			
-			
 			String createTableRoles = "CREATE TABLE roles (" +
-			"tipo INT NOT NULL PRIMARY KEY, " +
-			"UNIQUE KEY (tipo)" +
-			 ") ENGINE=InnoDB DEFAULT CHARSET=utf8;";	
+				"tipo_rol enum('Carguero', 'Lancha') NOT NULL PRIMARY KEY, " +
+				"UNIQUE KEY (tipo_rol)" +
+				") ENGINE=InnoDB DEFAULT CHARSET=utf8;";	
 			pstmt = con.prepareStatement(createTableRoles);	
 			cant = pstmt.executeUpdate();
 			pstmt.close();
 			System.out.println("********** TABLA Roles ok **********");
 			
 			
-			String createTableFigura = "CREATE TABLE figura (" +
-			"id_figura INT NOT NULL PRIMARY KEY, " +
-			"posX INT NOT NULL, " + 
-			"posY INT NOT NULL, " +
-			"angulo INT NOT NULL, " +
-			"UNIQUE KEY (id_figura)" +
-			 ") ENGINE=InnoDB DEFAULT CHARSET=utf8;";	
+			String createTableFigura = "CREATE TABLE figuras (" +
+				"id_figura INT NOT NULL PRIMARY KEY, " +
+				"posX INT NOT NULL, " + 
+				"posY INT NOT NULL, " +
+				"angulo INT NOT NULL, " +
+				"UNIQUE KEY (id_figura)" +
+				") ENGINE=InnoDB DEFAULT CHARSET=utf8;";	
 			pstmt = con.prepareStatement(createTableFigura);	
 			cant = pstmt.executeUpdate();
 			pstmt.close();
-			System.out.println("********** TABLA Figura ok **********");
+			System.out.println("********** TABLA Figuras ok **********");
+		
 			
-			
-			String createTableTipoMapa = "CREATE TABLE tipo_mapa (" +
-					"tipo enum('MarAbierto', 'Islas') NOT NULL PRIMARY KEY, " + 
-					"UNIQUE KEY (tipo)" +
-					 ") ENGINE=InnoDB DEFAULT CHARSET=utf8;";	
-			pstmt = con.prepareStatement(createTableTipoMapa);	
-			cant = pstmt.executeUpdate();
-			pstmt.close();
-			System.out.println("********** TABLA TipoMapa ok **********");
-			
-			
-			
-			String createTableMapa =  "CREATE TABLE mapa (" +
-					"tipo VARCHAR(45) NOT NULL PRIMARY KEY, " +
-					"id_figura INT NOT NULL, " +
-					"UNIQUE KEY (tipo)" +
-					") ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-			pstmt = con.prepareStatement(createTableMapa);	
-			cant = pstmt.executeUpdate();
-			pstmt.close();
-			System.out.println("********** Mapa ok **********");
-			
-			
-
-				String createTableCrearPartidas = "CREATE TABLE partidas (" +
-						"id_partida INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
-						"nombre VARCHAR(45) NOT NULL, " +
-						"jugador1 VARCHAR(45) NOT NULL, " +
-						"jugador2 VARCHAR (45) NOT NULL, " +
-						"mapa VARCHAR(45) NOT NULL, " +
-						"estado VARCHAR(45) NOT NULL, " +
-						"UNIQUE KEY (id_partida)" +
-						") ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+			String createTableCrearPartidas = "CREATE TABLE partidas (" +
+				"id_partida INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
+				"nombre VARCHAR(45) NOT NULL, " +
+				"jugador1 VARCHAR(45) NOT NULL, " +
+				"jugador2 VARCHAR (45) NOT NULL, " +
+				"tipo_mapa enum('MarAbierto', 'Islas') NOT NULL, " +
+				"estado enum ('Creada', 'EnCurso', 'Terminada') NOT NULL, " +
+				"UNIQUE KEY (id_partida)" +
+				") ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 			pstmt = con.prepareStatement(createTableCrearPartidas);	
 			cant = pstmt.executeUpdate();
 			pstmt.close();
 			System.out.println("********** TABLA Partidas ok **********");
-
-
 			
-
-			
-			String createTableEstadoPartidas = "CREATE TABLE estado_partidas (" +
-					"estado enum('Creada', 'EnCurso', 'Terminada') NOT NULL, " + 
-					"UNIQUE KEY (estado)" +
-					 ") ENGINE=InnoDB DEFAULT CHARSET=utf8;";	
-			pstmt = con.prepareStatement(createTableEstadoPartidas);	
+			String createTableFigurasPartidas = "CREATE TABLE figuras_partidas (" +
+					"id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
+					"id_partida INT NOT NULL, " +
+					"id_figura INT NOT NULL, " +
+					"posicion_x INT NOT NULL, " +
+					"posicion_y INT NOT NULL, " +
+					"impactosPermitidos INT NOT NULL, " +
+					"mangueras INT NOT NULL, " +
+					"FOREIGN KEY (id_partida) REFERENCES partidas(id_partida) ON DELETE CASCADE, " +
+					"FOREIGN KEY (id_figura) REFERENCES figuras(id_figura)" +				
+					 ") ENGINE=InnoDB DEFAULT CHARSET=utf8;";			
+			pstmt = con.prepareStatement(createTableFigurasPartidas);	
 			cant = pstmt.executeUpdate();
 			pstmt.close();
-			System.out.println("********** TABLA EstadoPartida ok **********");
-							
+			System.out.println("********** TABLA Figuras Partidas ok **********");
+		
 			
 			
 			System.out.println("********** TABLAS CREADAS **********");
