@@ -7,6 +7,10 @@ import java.sql.SQLException;
 
 public class CrearDB{
 	
+	public CrearDB(Connection con) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public static void main(String[] args) {
 		try{
 			//cargo driver
