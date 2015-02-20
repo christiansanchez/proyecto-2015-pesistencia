@@ -36,8 +36,9 @@ public class CrearDB{
 				
 			
 			String createTableRoles = "CREATE TABLE roles (" +
-				"tipo_rol enum('Carguero', 'Lancha') NOT NULL PRIMARY KEY, " +
-				"UNIQUE KEY (tipo_rol)" +
+				"id_rol int NOT NULL PRIMARY KEY" +
+				"tipo_rol enum('Carguero', 'Lancha') NOT NULL, " +
+				"UNIQUE KEY (id_rol)" +
 				") ENGINE=InnoDB DEFAULT CHARSET=utf8;";	
 			pstmt = con.prepareStatement(createTableRoles);	
 			cant = pstmt.executeUpdate();
