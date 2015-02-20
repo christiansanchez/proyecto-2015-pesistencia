@@ -13,25 +13,21 @@ public class CrearDB{
 
 	public static void main(String[] args) {
 		try{
-			//cargo driver
 			String driver = "com.mysql.jdbc.Driver";	
 			Class.forName(driver);
 		
 			String url = "jdbc:mysql://localhost:3306/";
 			
 			System.out.println("********** CONECTANDO MYSQL **********");
-			//creo conexion
 			Connection con = DriverManager.getConnection(url, "root", "admin");
 			
 			System.out.println("********** CONECTADO MYSQL **********");
-			//Creamos la DB correspondiente al juego
 			System.out.println("********** CREANDO BASE DE DATOS **********");
 			String createDB = "CREATE DATABASE juego;";
 			PreparedStatement pstmt = con.prepareStatement(createDB);	
 			int cant = pstmt.executeUpdate();
 			pstmt.close();	
 			System.out.println("********** CREADA BASE DE DATOS **********");
-			//seteo la db a usar 
 			String strSetDB = "Use juego;";
 			pstmt = con.prepareStatement(strSetDB);	
 			cant = pstmt.executeUpdate();
@@ -95,7 +91,6 @@ public class CrearDB{
 			
 			
 			System.out.println("********** TABLAS CREADAS **********");
-			//cerramos la conexion hacia la base de datos
 			con.close();
 			System.out.println("********** DESCONECTADO MYSQL **********");
 		}
