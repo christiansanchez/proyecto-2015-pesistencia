@@ -37,7 +37,7 @@ public class CrearDB{
 			
 			String createTableRoles = "CREATE TABLE roles (" +
 				"id_rol int NOT NULL PRIMARY KEY" +
-				"tipo_rol enum('Carguero', 'Lancha') NOT NULL, " +
+				"tipo_rol enum('BarcoCarguero', 'LanchaPirata') NOT NULL, " +
 				"UNIQUE KEY (id_rol)" +
 				") ENGINE=InnoDB DEFAULT CHARSET=utf8;";	
 			pstmt = con.prepareStatement(createTableRoles);	
@@ -62,8 +62,6 @@ public class CrearDB{
 			String createTableCrearPartidas = "CREATE TABLE partidas (" +
 				"id_partida INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
 				"nombre VARCHAR(45) NOT NULL, " +
-				"jugador1 VARCHAR(45) NOT NULL, " +
-				"jugador2 VARCHAR (45) NOT NULL, " +
 				"tipo_mapa enum('MarAbierto', 'Islas') NOT NULL, " +
 				"estado enum ('Creada', 'EnCurso', 'Terminada') NOT NULL, " +
 				"UNIQUE KEY (id_partida)" +
@@ -72,6 +70,7 @@ public class CrearDB{
 			cant = pstmt.executeUpdate();
 			pstmt.close();
 			System.out.println("********** TABLA Partidas ok **********");
+			
 			
 			String createTableFigurasPartidas = "CREATE TABLE figuras_partidas (" +
 					"id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
