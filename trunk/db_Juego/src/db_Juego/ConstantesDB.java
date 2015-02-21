@@ -10,8 +10,8 @@ public class ConstantesDB {
 			
 			
 			//Tipos de roles
-			static final String	TIPO_ROL_Barco = "BarcoCarguero";
-			static final String	tipo_ROL_LANCHA = "LanchaPirata";
+			static final String	NOMBRE_ROL_Barco = "BarcoCarguero";
+			static final String	NOMBRE_ROL_LANCHA = "LanchaPirata";
 				
 			//Estados de las partidas
 			static final int ID_ESTADO_CREADA = 1;
