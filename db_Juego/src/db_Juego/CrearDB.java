@@ -51,6 +51,10 @@ public class CrearDB{
 				"posX INT NOT NULL, " + 
 				"posY INT NOT NULL, " +
 				"angulo INT NOT NULL, " +
+				"barco TINYINT(1) NOT NULL" +
+				"lancha TINYINT(1) NOT NULL " +
+				"isla TINYINT(1) NOT NULL" +
+				"costa TINYINT(1) NOT NULL" +
 				"UNIQUE KEY (id_figura)" +
 				") ENGINE=InnoDB DEFAULT CHARSET=utf8;";	
 			pstmt = con.prepareStatement(createTableFigura);	
