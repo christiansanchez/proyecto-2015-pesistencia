@@ -36,7 +36,7 @@ public class CrearDB{
 				
 			
 			String createTableRoles = "CREATE TABLE roles (" +
-				"id_rol int NOT NULL PRIMARY KEY" +
+				"id_rol int NOT NULL PRIMARY KEY," +
 				"nombre enum('BarcoCarguero', 'LanchaPirata') NOT NULL, " +
 				"UNIQUE KEY (id_rol)" +
 				") ENGINE=InnoDB DEFAULT CHARSET=utf8;";	
@@ -51,10 +51,10 @@ public class CrearDB{
 				"posX INT NOT NULL, " + 
 				"posY INT NOT NULL, " +
 				"angulo INT NOT NULL, " +
-				"barco TINYINT(1) NOT NULL" +
-				"lancha TINYINT(1) NOT NULL " +
-				"isla TINYINT(1) NOT NULL" +
-				"costa TINYINT(1) NOT NULL" +
+				"barco TINYINT(1) NOT NULL, " +
+				"lancha TINYINT(1) NOT NULL, " +
+				"isla TINYINT(1) NOT NULL, " +
+				"costa TINYINT(1) NOT NULL, " +
 				"UNIQUE KEY (id_figura)" +
 				") ENGINE=InnoDB DEFAULT CHARSET=utf8;";	
 			pstmt = con.prepareStatement(createTableFigura);	
